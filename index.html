@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>لعبة تخمين الآيات القرآنية</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: "Traditional Arabic", "Arabic Typesetting", "Geeza Pro", "Simplified Arabic",
+        "Times New Roman", "Noto Naskh Arabic", ui-serif, Georgia, serif;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-amber-50 font-serif text-emerald-950 antialiased">
+
+  <main class="relative mx-auto min-h-screen w-full max-w-2xl px-4 py-8 sm:px-6 sm:py-10">
+
+    <section
+      id="start-screen"
+      class="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center text-center opacity-100 transition-opacity duration-300 ease-out"
+      aria-label="شاشة البداية"
+    >
+      <div class="w-full max-w-lg space-y-10">
+        <header class="space-y-4 border-b border-amber-300/60 pb-8">
+          <p class="text-sm tracking-wide text-amber-700">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+          <h1 class="text-4xl font-bold leading-tight text-emerald-900 sm:text-5xl">
+            لعبة تخمين السور القرآنية
+          </h1>
+          <p class="text-lg leading-relaxed text-amber-800/90">
+            اقرأ الآية، ثم اختر اسم السورة الصحيحة
+          </p>
+        </header>
+
+        <button
+          type="button"
+          id="btn-start"
+          class="rounded-lg border-2 border-amber-500 bg-emerald-800 px-10 py-4 text-xl font-bold text-amber-50 shadow-md transition-colors duration-200 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:ring-offset-2 focus:ring-offset-amber-50"
+        >
+          ابدأ التحدي
+        </button>
+        <footer class="social-links mt-12 border-t border-amber-300/30 pt-6" aria-label="روابط التواصل الاجتماعي">
+          <nav class="flex justify-center gap-5 text-emerald-800/70">
+            <a href="https://github.com/hamedhagalzen2009-hub" target="_blank" rel="noopener noreferrer" class="flex h-11 w-11 items-center justify-center rounded-full border border-amber-300/50 bg-amber-50/60 transition-all duration-200 hover:border-emerald-700/40 hover:bg-emerald-50 hover:text-emerald-900 focus:outline-none focus:ring-2 focus:ring-emerald-600" aria-label="GitHub">
+              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/midorya_61/" target="_blank" rel="noopener noreferrer" class="flex h-11 w-11 items-center justify-center rounded-full border border-amber-300/50 bg-amber-50/60 transition-all duration-200 hover:border-emerald-700/40 hover:bg-emerald-50 hover:text-emerald-900 focus:outline-none focus:ring-2 focus:ring-emerald-600" aria-label="Instagram">
+              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+            </a>
+            <a href="https://wa.me/249120723907" target="_blank" rel="noopener noreferrer" class="flex h-11 w-11 items-center justify-center rounded-full border border-amber-300/50 bg-amber-50/60 transition-all duration-200 hover:border-emerald-700/40 hover:bg-emerald-50 hover:text-emerald-900 focus:outline-none focus:ring-2 focus:ring-emerald-600" aria-label="WhatsApp">
+              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+            </a>
+            <a href="https://www.tiktok.com/@insann_tr" target="_blank" rel="noopener noreferrer" class="flex h-11 w-11 items-center justify-center rounded-full border border-amber-300/50 bg-amber-50/60 transition-all duration-200 hover:border-emerald-700/40 hover:bg-emerald-50 hover:text-emerald-900 focus:outline-none focus:ring-2 focus:ring-emerald-600" aria-label="TikTok">
+              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.77 1.52V6.76a4.85 4.85 0 0 1-1-.07z"/></svg>
+            </a>
+          </nav>
+        </footer>
+      </div>
+    </section>
+
+    <section
+      id="quiz-screen"
+      class="pointer-events-none hidden min-h-[calc(100vh-4rem)] flex-col opacity-0 transition-opacity duration-300 ease-out"
+      aria-label="شاشة الاختبار"
+      aria-hidden="true"
+    >
+      <div
+        id="timer-bar"
+        class="mb-6 h-1.5 w-full overflow-hidden rounded-full bg-amber-400"
+        role="progressbar"
+        aria-valuemin="0"
+        aria-valuemax="15"
+        aria-valuenow="15"
+        aria-label="الوقت المتبقي"
+      >
+        <div
+          id="timer-fill"
+          class="h-full w-full rounded-full bg-emerald-700 transition-[width] duration-1000 ease-linear"
+        ></div>
+      </div>
+
+      <div class="mb-6 flex items-center justify-between gap-4 border-b border-amber-200 pb-4">
+        <p class="text-base font-bold text-emerald-800">
+          سؤال <span id="question-number">1</span> من <span id="question-total">20</span>
+        </p>
+        <p class="text-base text-amber-800">
+          النقاط:
+          <span id="score-display" class="font-bold text-emerald-800">0</span>
+        </p>
+      </div>
+
+      <article
+        class="mb-8 rounded-sm border-2 border-amber-300/80 bg-yellow-50/80 px-6 py-10 shadow-sm sm:px-10 sm:py-12"
+        aria-labelledby="ayah-text"
+      >
+        <p
+          id="ayah-text"
+          class="text-center text-3xl font-bold leading-[2.2] tracking-wide text-emerald-950 sm:text-4xl md:text-5xl"
+        >
+        </p>
+      </article>
+
+      <div
+        id="options-container"
+        class="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4"
+        role="group"
+        aria-label="اختر اسم السورة"
+      >
+        <button type="button" class="option-btn rounded-md border-2 border-amber-400/70 bg-amber-50/50 px-4 py-4 text-lg font-bold text-emerald-900 transition-colors hover:border-amber-600 hover:bg-amber-100/80 focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:ring-offset-2 focus:ring-offset-amber-50" data-option>—</button>
+        <button type="button" class="option-btn rounded-md border-2 border-amber-400/70 bg-amber-50/50 px-4 py-4 text-lg font-bold text-emerald-900 transition-colors hover:border-amber-600 hover:bg-amber-100/80 focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:ring-offset-2 focus:ring-offset-amber-50" data-option>—</button>
+        <button type="button" class="option-btn rounded-md border-2 border-amber-400/70 bg-amber-50/50 px-4 py-4 text-lg font-bold text-emerald-900 transition-colors hover:border-amber-600 hover:bg-amber-100/80 focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:ring-offset-2 focus:ring-offset-amber-50" data-option>—</button>
+        <button type="button" class="option-btn rounded-md border-2 border-amber-400/70 bg-amber-50/50 px-4 py-4 text-lg font-bold text-emerald-900 transition-colors hover:border-amber-600 hover:bg-amber-100/80 focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:ring-offset-2 focus:ring-offset-amber-50" data-option>—</button>
+      </div>
+      <button
+        type="button"
+        id="btn-quiz-back"
+        class="mx-auto mt-8 block rounded-lg border border-amber-700/30 bg-transparent px-5 py-2 text-sm font-semibold text-amber-800/80 transition-all duration-200 hover:bg-amber-100/50 hover:text-amber-900 focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:ring-offset-2 focus:ring-offset-amber-50"
+      >
+        العودة للقائمة الرئيسية
+      </button>
+    </section>
+
+    <section
+      id="result-screen"
+      class="pointer-events-none hidden min-h-[calc(100vh-4rem)] flex-col items-center justify-center px-2 text-center opacity-0 transition-opacity duration-300 ease-out"
+      aria-label="شاشة النتيجة"
+      aria-hidden="true"
+    >
+      <div class="w-full max-w-lg rounded-2xl border-2 border-amber-300/80 bg-gradient-to-b from-yellow-50 via-amber-50 to-amber-100/90 p-8 shadow-lg ring-1 ring-emerald-900/5 sm:p-10">
+
+        <header class="mb-8 border-b border-amber-200/90 pb-5">
+          <p class="mb-1 text-sm font-semibold tracking-wide text-amber-700">انتهى التحدي</p>
+          <h2 class="text-3xl font-bold text-emerald-900">نتيجتك</h2>
+        </header>
+
+        <div class="relative mx-auto mb-8 flex h-52 w-52 items-center justify-center" aria-live="polite">
+          <div class="absolute inset-0 rounded-full border-[5px] border-emerald-800/25" aria-hidden="true"></div>
+          <div class="absolute inset-3 rounded-full border-2 border-dashed border-amber-400/90" aria-hidden="true"></div>
+          <div class="relative flex h-40 w-40 flex-col items-center justify-center rounded-full bg-yellow-50 shadow-inner ring-4 ring-emerald-800/30">
+            <p class="text-4xl font-bold leading-none text-emerald-800">
+              <span id="result-score">0</span>
+              <span class="mx-0.5 text-2xl font-semibold text-amber-700">/</span>
+              <span id="result-total">20</span>
+            </p>
+            <span class="mt-2 text-xs font-bold tracking-widest text-amber-700">نقطة</span>
+          </div>
+        </div>
+
+        <p id="result-message" class="mb-10 text-xl font-bold leading-relaxed text-amber-800">
+          تقييم مستواك
+        </p>
+
+        <div class="mx-auto mb-2 flex w-full max-w-sm flex-col justify-center gap-4 sm:flex-row">
+          <button
+            type="button"
+            id="btn-replay"
+            class="flex-1 rounded-lg border-2 border-amber-500 bg-emerald-800 px-6 py-3.5 text-lg font-bold text-amber-50 shadow-md transition-colors duration-200 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:ring-offset-2 focus:ring-offset-amber-50"
+          >
+            العب مجدداً
+          </button>
+          <button
+            type="button"
+            id="btn-main-menu"
+            class="flex-1 rounded-lg border-2 border-emerald-800 bg-transparent px-6 py-3.5 text-lg font-bold text-emerald-800 transition-colors duration-200 hover:bg-emerald-50 focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:ring-offset-2 focus:ring-offset-amber-50"
+          >
+            القائمة الرئيسية
+          </button>
+        </div>
+        <footer class="social-links mt-12 border-t border-amber-300/30 pt-6" aria-label="روابط التواصل الاجتماعي">
+          <nav class="flex justify-center gap-5 text-emerald-800/70">
+            <a href="https://github.com/hamedhagalzen2009-hub" target="_blank" rel="noopener noreferrer" class="flex h-11 w-11 items-center justify-center rounded-full border border-amber-300/50 bg-amber-50/60 transition-all duration-200 hover:border-emerald-700/40 hover:bg-emerald-50 hover:text-emerald-900 focus:outline-none focus:ring-2 focus:ring-emerald-600" aria-label="GitHub">
+              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/midorya_61/" target="_blank" rel="noopener noreferrer" class="flex h-11 w-11 items-center justify-center rounded-full border border-amber-300/50 bg-amber-50/60 transition-all duration-200 hover:border-emerald-700/40 hover:bg-emerald-50 hover:text-emerald-900 focus:outline-none focus:ring-2 focus:ring-emerald-600" aria-label="Instagram">
+              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+            </a>
+            <a href="https://wa.me/249120723907" target="_blank" rel="noopener noreferrer" class="flex h-11 w-11 items-center justify-center rounded-full border border-amber-300/50 bg-amber-50/60 transition-all duration-200 hover:border-emerald-700/40 hover:bg-emerald-50 hover:text-emerald-900 focus:outline-none focus:ring-2 focus:ring-emerald-600" aria-label="WhatsApp">
+              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+            </a>
+            <a href="https://www.tiktok.com/@insann_tr" target="_blank" rel="noopener noreferrer" class="flex h-11 w-11 items-center justify-center rounded-full border border-amber-300/50 bg-amber-50/60 transition-all duration-200 hover:border-emerald-700/40 hover:bg-emerald-50 hover:text-emerald-900 focus:outline-none focus:ring-2 focus:ring-emerald-600" aria-label="TikTok">
+              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.77 1.52V6.76a4.85 4.85 0 0 1-1-.07z"/></svg>
+            </a>
+          </nav>
+        </footer>
+
+      
+      </div>
+    </section>
+
+  </main>
+
+  <script src="js/app.js" defer></script>
+</body>
+</html>
